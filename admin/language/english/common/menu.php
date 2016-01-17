@@ -1,0 +1,30 @@
+<?php
+// Text
+$_['text_product']                     = 'Quản lý Sản phẩm';
+$_['text_category']                    = 'Phân loại SP';
+$_['text_departments']                 = 'Quản lý phòng ban';
+$_['text_department']                  = 'Phòng ban';
+$_['text_part']		                   = 'Bộ phận';
+$_['text_position']		               = 'Chức vụ';
+$_['text_delivery']                    = 'Xuất kho';
+$_['text_import']	      		       = 'Nhập dữ liệu';
+$_['text_receipt']      		       = 'Nhập kho';
+$_['text_staff_import']      		   = 'Upload file DS nhân viên';
+$_['text_working_import']      		   = 'Upload file chấm công';
+$_['text_inventory']                   = 'Tồn kho';
+$_['text_report']                      = 'Báo cáo';
+$_['text_report_department']           = 'Xuất kho theo phòng ban';
+$_['text_report_product']              = 'Xuất kho theo sản phẩm';
+$_['text_report_staff']                = 'Xuất thông tin nhân viên';
+$_['text_staffs'] 		               = 'Thông tin nhân viên';
+$_['text_staff'] 		               = 'Quản lý nhân viên';
+$_['text_degree'] 		               = 'Trình độ học vấn';
+$_['text_technique']	               = 'Kỹ thuật chuyên môn';
+$_['text_contract_kind']               = 'Loại hợp đồng';
+$_['text_place'] 		               = 'Quản lý địa điểm';
+$_['text_working'] 		               = 'Chấm công';
+$_['text_working_offset'] 		       = 'Công ngoại lệ';
+$_['text_timesheet'] 			       = 'Bảng công';
+$_['text_setting']                     = 'Cài đặt chung';
+$_['text_user']	                       = 'Người dùng';
+$_['text_user_group']                  = 'Nhóm người dùng';
