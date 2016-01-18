@@ -29,7 +29,7 @@
             <div class="form-group required">
               <label class="col-sm-2 control-label" for="input-staff"><?php echo $entry_code; ?></label>
               <div class="col-sm-5">
-                <input type="text" value="<?php echo $code; ?>" placeholder="<?php echo $entry_code; ?>" name="code" id="input-staff" class="form-control" />
+                <input type="text" value="<?php echo $code; ?>" placeholder="<?php echo $entry_code; ?>" id="input-staff" class="form-control" />
                 <input type="hidden" value="<?php echo $staff_id; ?>" name="staff_id" />
               </div>
             </div>

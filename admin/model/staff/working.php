@@ -203,7 +203,7 @@ class ModelStaffWorking extends Model {
 		// Actual outside time
 		$_outside_actual_time = $_over_virtual_time - $time_pending;
 		if ($_over_virtual_time < 0) { // Check under time
-			$_data['under'] = $this->calculateOverTime(abs($_outside_actual_time)); // Format under time by hours
+			$_data['under'] = $this->formatToHour(abs($_outside_actual_time)); // Format under time by hours
 			$_data['absent'] = 'KP';
 		} else {
 			if ($_is_friday && $staff['working_change']) $_data['absent'] = 8;
@@ -214,7 +214,13 @@ class ModelStaffWorking extends Model {
 		return $_data;
 	}
 
-	public function calculateOverTime($timestamp_over) {
+	public function subTimeForWorking($fromTime, $toTime) {
+		$time = strtotime($toTime) - strtotime($fromTime);
+		$time = $time < 0 ? $time + 86400 : $time;
+		return $this->formatToHour($time);
+	}
+
+	public function formatToHour($timestamp_over) {
 		$_number_hours = ($timestamp_over - ($timestamp_over % 3600)) / 3600; // To hours
 		$_number_minutes = ($timestamp_over % 3600) / 60; // To minutes
 
