@@ -106,9 +106,12 @@ class ModelStaffWorkingOffset extends Model {
 		$this->load->model('staff/working');
 		$working = $this->model_staff_working->getWorkingByDateStaffId($data['staff_id'], $data['date']);
 		if (empty($working)) {
+			$this->load->model('staff/staff');
+			$staff = $this->model_staff_staff->getStaff($data['staff_id']);
 			$working = array(
 				'staff_id' => $data['staff_id'],
-				'date' => $data['date']
+				'date' => $data['date'],
+				'working' => $staff['working']
 			);
 		}
 		
@@ -126,6 +129,7 @@ class ModelStaffWorkingOffset extends Model {
 					$time = $this->model_staff_working->calculateOverTime($time);
 				}
 				if (!empty($working['under'])) $working['under'] -= $time;
+				else $working['under'] = $time;
 				$working['under'] = $working['under'] < 0 ? 0 : $working['under'];
 				$working['absent'] = $time . 'CP';
 				break;

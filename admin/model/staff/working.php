@@ -159,7 +159,7 @@ class ModelStaffWorking extends Model {
 			'absent' => empty($data['absent']) ? '' : $data['absent'],
 			'error' => false
 		);
-		print("<pre>"); var_dump($_data); exit;
+		
 		// Check error data
 		if ($data['checkin'] == "0:00:00" || $data['checkout'] == "0:00:00") {
 			$_data['error'] = true;
