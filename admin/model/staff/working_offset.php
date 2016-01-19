@@ -126,7 +126,7 @@ class ModelStaffWorkingOffset extends Model {
 				} else {
 					$time = strtotime($data['to_hour']) - strtotime($data['from_hour']);
 					$time = $time < 0 ? $time + 86400 : $time;
-					$time = $this->model_staff_working->calculateOverTime($time);
+					$time = $this->model_staff_working->formatToHour($time);
 				}
 				if (!empty($working['under'])) $working['under'] -= $time;
 				else $working['under'] = $time;
@@ -140,7 +140,7 @@ class ModelStaffWorkingOffset extends Model {
 				} else {
 					$time = strtotime($data['to_hour']) - strtotime($data['from_hour']);
 					$time = $time < 0 ? $time + 86400 : $time;
-					$time = $this->model_staff_working->calculateOverTime($time);
+					$time = $this->model_staff_working->formatToHour($time);
 				}
 				$working['over'] = $time;
 				break;

@@ -872,7 +872,7 @@ class ControllerStaffWorking extends Controller {
 									else {
 										$_offset_time = strtotime($working_offset[2]['to_hour']) - strtotime($working_offset[2]['from_hour']);
 										if ($_offset_time < 0) $_offset_time += 86400;
-										$_offset_hours = $this->model_staff_working->calculateOverTime($_offset_time);
+										$_offset_hours = $this->model_staff_working->formatToHour($_offset_time);
 									}
 									$arr_data[$col . $row] = $_offset_hours . 'CP';
 								// Nghỉ phép năm
@@ -893,7 +893,7 @@ class ControllerStaffWorking extends Controller {
 										if (!empty($working_offset[3])) {
 											$_over_time = strtotime($working_offset[3]['to_hour']) - strtotime($working_offset[3]['from_hour']);
 											if ($_over_time < 0) $_over_time += 86400;
-											$_over_hours += $this->model_staff_working->calculateOverTime($_over_time);
+											$_over_hours += $this->model_staff_working->formatToHour($_over_time);
 										}
 									}
 									$arr_data[$next_col . $row] = $_over_hours == 0 ? '' : $_over_hours;
@@ -908,7 +908,7 @@ class ControllerStaffWorking extends Controller {
 									if (!empty($working_offset[3])) {
 										$_over_time = strtotime($working_offset[3]['to_hour']) - strtotime($working_offset[3]['from_hour']);
 										if ($_over_time < 0) $_over_time += 86400;
-										$arr_data[$next_col . $row] = $this->model_staff_working->calculateOverTime($_over_time);
+										$arr_data[$next_col . $row] = $this->model_staff_working->formatToHour($_over_time);
 									}
 								}
 								// Nếu có tăng ca
