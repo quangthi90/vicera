@@ -30,7 +30,7 @@
       <div class="panel-body">
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-timesheet">
           <div class="well">
-            <div class="row">
+            <div class="row" id="data-filter">
               <div class="col-sm-6">
                 <div class="form-group">
                   <label class="control-label" for="input-date-start"><?php echo $text_code; ?></label>
@@ -87,18 +87,22 @@
               <thead>
                 <tr>
                   <td class="text-left" rowspan="2"><?php echo $column_code; ?></td>
-                  <td class="text-left" rowspan="2"><?php echo $column_fullname; ?></td>
+                  <td class="text-left" rowspan="2" style="min-width: 200px;"><?php echo $column_fullname; ?></td>
                   <td class="text-left" rowspan="2"><?php echo $column_working; ?></td>
-                  <td class="text-left" rowspan="2"><?php echo $column_department; ?></td>
+                  <td class="text-left" rowspan="2" style="min-width: 150px;"><?php echo $column_department; ?></td>
+                  <?php $i = 0; ?>
                   <?php for ($date = $filter_date_start; $date <= $filter_date_end; $date++) { ?>
-                  <td class="text-center" colspan="3"><?php echo $date; ?></td>
+                  <?php $i++; ?>
+                  <td class="text-center" colspan="3" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $date; ?></td>
                   <?php } ?>
                 </tr>
                 <tr>
+                  <?php $i = 0; ?>
                   <?php for ($date = $filter_date_start; $date <= $filter_date_end; $date++) { ?>
-                  <td class="text-center">NgC</td>
-                  <td class="text-center">ThC</td>
-                  <td class="text-center">TgC</td>
+                  <?php $i++; ?>
+                  <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>>NgC</td>
+                  <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>>ThC</td>
+                  <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>>TgC</td>
                   <?php } ?>
                 </tr>
               </thead>
@@ -110,10 +114,12 @@
                   <td class="text-left"><?php echo $staff['fullname']; ?></td>
                   <td class="text-left"><?php echo $staff['working']; ?></td>
                   <td class="text-left"><?php echo $staff['department']; ?></td>
+                  <?php $i = 0; ?>
                   <?php for ($date = $filter_date_start; $date <= $filter_date_end; $date++) { ?>
-                  <td class="text-left"><?php echo $staff['timesheets'][$date]['NgC']; ?></td>
-                  <td class="text-left"><?php echo $staff['timesheets'][$date]['ThC']; ?></td>
-                  <td class="text-left"><?php echo $staff['timesheets'][$date]['TgC']; ?></td>
+                  <?php $i++; ?>
+                  <td class="text-left" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['NgC']; ?></td>
+                  <td class="text-left" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['ThC']; ?></td>
+                  <td class="text-left" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['TgC']; ?></td>
                   <?php } ?>
                 </tr>
                 <?php } ?>
@@ -251,7 +257,7 @@ $('.date').datetimepicker({
   });
 </script>
 <script type="text/javascript">
-  $('#staff-filter').keyup(function(e) {
+  $('#data-filter').keyup(function(e) {
     var code = e.keyCode || e.which;
       if(code == 13) {
         $('#button-filter').click();

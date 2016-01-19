@@ -31,7 +31,7 @@
       <div class="panel-body">
         <form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-working">
           <div class="well">
-            <div class="row">
+            <div class="row" id="data-filter">
               <div class="col-sm-6">
                 <div class="form-group">
                   <label class="control-label" for="input-date-start"><?php echo $text_code; ?></label>
@@ -295,7 +295,7 @@ $('.date').datetimepicker({
   });
 </script>
 <script type="text/javascript">
-  $('#staff-filter').keyup(function(e) {
+  $('#data-filter').keyup(function(e) {
     var code = e.keyCode || e.which;
       if(code == 13) {
         $('#button-filter').click();

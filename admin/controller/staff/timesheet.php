@@ -702,9 +702,14 @@ class ControllerStaffTimesheet extends Controller {
 							break;
 					}
 				}
-			} 
+			}
 
-			if (empty($workings[$date])) {
+			// Lương khoán
+			if ($staff['special']) {
+				if ($NgC !== 'NB') {
+					$NgC = $staff['working'];
+				}
+			} elseif (empty($workings[$date])) {
 				if ($NgC !== 'NB')
 					$ThC_KP = $staff['working'] - $ThC_CP;
 			} else {
