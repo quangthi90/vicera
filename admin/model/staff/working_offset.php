@@ -10,7 +10,7 @@ class ModelStaffWorkingOffset extends Model {
 			$data['to_hour'] = '0:00:00';
 		}
 
-		$this->calculateOffset($data);
+		// $this->calculateOffset($data);
 
 		$this->db->query("INSERT INTO " . DB_PREFIX . "working_offset SET kind = '" . (int)$data['kind'] . "', staff_id = '" . $this->db->escape($data['staff_id']) . "', date = DATE('" . $data['date'] . "'), from_hour = TIME('" . $data['from_hour'] . "'), to_hour = TIME('" . $data['to_hour'] . "'), is_full_day = '" . (bool)$data['is_full_day'] . "'");
 
@@ -31,7 +31,7 @@ class ModelStaffWorkingOffset extends Model {
 			$data['to_hour'] = '0:00:00';
 		}
 
-		$this->calculateOffset($data);
+		// $this->calculateOffset($data);
 
 		$this->db->query("UPDATE " . DB_PREFIX . "working_offset SET kind = '" . (int)$data['kind'] . "', from_hour = TIME('" . $data['from_hour'] . "'), to_hour = TIME('" . $data['to_hour'] . "'), is_full_day = '" . (bool)$data['is_full_day'] . "' WHERE working_offset_id = '" . (int)$working_offset_id . "'");
 
