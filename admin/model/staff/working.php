@@ -3,8 +3,8 @@ class ModelStaffWorking extends Model {
 	public function addWorking($data) {
 		$this->event->trigger('pre.admin.working.add', $data);
 
-		$data['checkin'] = empty($data['checkin']) ? '0:00:00' : $data['checkin'];
-		$data['checkout'] = empty($data['checkout']) ? '0:00:00' : $data['checkout'];
+		$data['checkin'] = empty($data['checkin']) ? '00:00:00' : $data['checkin'];
+		$data['checkout'] = empty($data['checkout']) ? '00:00:00' : $data['checkout'];
 
 		$outsides = $this->calculateWorking($data);
 		
@@ -20,8 +20,8 @@ class ModelStaffWorking extends Model {
 	public function editWorking($working_id, $data) {
 		$this->event->trigger('pre.admin.working.edit', $data);
 
-		$data['checkin'] = empty($data['checkin']) ? '0:00:00' : $data['checkin'];
-		$data['checkout'] = empty($data['checkout']) ? '0:00:00' : $data['checkout'];
+		$data['checkin'] = empty($data['checkin']) ? '00:00:00' : $data['checkin'];
+		$data['checkout'] = empty($data['checkout']) ? '00:00:00' : $data['checkout'];
 
 		$outsides = $this->calculateWorking($data);
 		
@@ -161,7 +161,7 @@ class ModelStaffWorking extends Model {
 		);
 		
 		// Check error data
-		if ($data['checkin'] == "0:00:00" || $data['checkout'] == "0:00:00") {
+		if ($data['checkin'] == "00:00:00" || $data['checkout'] == "00:00:00") {
 			$_data['error'] = true;
 			return $_data;
 		}
