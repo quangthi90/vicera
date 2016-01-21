@@ -691,18 +691,18 @@ class ControllerStaffTimesheet extends Controller {
 								$ThC_CP += $staff['working'];
 								break;
 							}
-							$ThC_CP += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+							$ThC_CP += $this->model_staff_working->subTimeForWorking($result['from_hour'], $result['to_hour']);
 							break;
 
 						case '3':
 							if ($NgC === 'NB')
 								if (!$result['is_full_day'])
-									$TgC_NN += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+									$TgC_NN += $this->model_staff_working->subTimeForWorking($result['from_hour'], $result['to_hour']);
 								else
 									$TgC_NN += $staff['working'];
 							else
 								if (!$result['is_full_day'])
-									$TgC_NT += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+									$TgC_NT += $this->model_staff_working->subTimeForWorking($result['from_hour'], $result['to_hour']);
 								else
 									$TgC_NT += $staff['working'];
 							break;
@@ -721,6 +721,10 @@ class ControllerStaffTimesheet extends Controller {
 			} else {
 				$resutls = $workings[$date];
 				foreach ($resutls as $resutl) {
+					if ($resutl['error']) {
+						$NgC = 'Lỗi';
+						break;
+					}
 					$time_KP = $ThC_CP - $resutl['under'];
 					$ThC_KP += $time_KP < 0 ? abs($time_KP) : 0;
 					if ($NgC !== 'NB') {
