@@ -696,9 +696,15 @@ class ControllerStaffTimesheet extends Controller {
 
 						case '3':
 							if ($NgC === 'NB')
-								$TgC_NN += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+								if (!$result['is_full_day'])
+									$TgC_NN += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+								else
+									$TgC_NN += $staff['working'];
 							else
-								$TgC_NT += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+								if (!$result['is_full_day'])
+									$TgC_NT += $this->model_staff_working->subTimeForWorking($result['to_hour'], $result['from_hour']);
+								else
+									$TgC_NT += $staff['working'];
 							break;
 					}
 				}
