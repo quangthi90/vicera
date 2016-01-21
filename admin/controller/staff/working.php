@@ -567,6 +567,18 @@ class ControllerStaffWorking extends Controller {
 			$url .= '&filter_date_end=' . $this->request->get['filter_date_end'];
 		}
 
+		if (isset($this->request->get['filter_department_id'])) {
+			$url .= '&filter_department_id=' . $this->request->get['filter_department_id'];
+		}
+
+		if (isset($this->request->get['filter_part_id'])) {
+			$url .= '&filter_part_id=' . $this->request->get['filter_part_id'];
+		}
+
+		if (isset($this->request->get['filter_error'])) {
+			$url .= '&filter_error=' . $this->request->get['filter_error'];
+		}
+
 		if (isset($this->request->get['sort'])) {
 			$url .= '&sort=' . $this->request->get['sort'];
 		}
