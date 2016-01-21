@@ -60,7 +60,7 @@ class ModelStaffWorking extends Model {
 		}
 
 		if (!empty($data['filter_error'])) {
-			$sql .= " AND wk.under >= 8";
+			$sql .= " AND (wk.error = true OR wk.under >= 8)";
 		}
 
 		if (!empty($data['filter_department_id'])) {
@@ -129,7 +129,7 @@ class ModelStaffWorking extends Model {
 		}
 
 		if (!empty($data['filter_error'])) {
-			$sql .= " AND wk.under >= 8";
+			$sql .= " AND (wk.error = true OR wk.under >= 8)";
 		}
 
 		if (!empty($data['filter_department_id'])) {
