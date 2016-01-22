@@ -2036,3 +2036,6 @@
 2016-01-18 10:05:15 - PHP Notice:  Undefined index: 2015-12-06 in G:\Program Files\xampp\htdocs\vicera\admin\view\template\staff\timesheet_list.tpl on line 114
 2016-01-18 10:05:15 - PHP Notice:  Undefined index: 2015-12-06 in G:\Program Files\xampp\htdocs\vicera\admin\view\template\staff\timesheet_list.tpl on line 115
 2016-01-18 10:05:15 - PHP Notice:  Undefined index: 2015-12-06 in G:\Program Files\xampp\htdocs\vicera\admin\view\template\staff\timesheet_list.tpl on line 116
+2016-01-22 6:43:01 - PHP Notice:  Undefined variable: staff in G:\Program Files\xampp\htdocs\vicera\admin\controller\staff\timesheet.php on line 315
+2016-01-22 8:01:57 - PHP Notice:  Undefined variable: sort_code in G:\Program Files\xampp\htdocs\vicera\admin\view\template\staff\staff_list.tpl on line 109
+2016-01-22 8:02:09 - PHP Notice:  Undefined variable: sort_code in G:\Program Files\xampp\htdocs\vicera\admin\view\template\staff\staff_list.tpl on line 109

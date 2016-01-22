@@ -161,7 +161,7 @@ class ModelStaffWorking extends Model {
 		);
 		
 		// Check error data
-		if ($data['checkin'] == ("00:00" || "00:00:00") || $data['checkout'] == ("00:00" || "00:00:00")) {
+		if ($data['checkin'] == "00:00" || $data['checkin'] == "00:00:00" || $data['checkout'] == "00:00" || $data['checkout'] == "00:00:00") {
 			$_data['error'] = true;
 			return $_data;
 		}
