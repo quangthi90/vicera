@@ -95,6 +95,12 @@
                   <?php $i++; ?>
                   <td class="text-center" colspan="3" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $date; ?></td>
                   <?php } ?>
+                  <td class="text-center" rowspan="2"><?php echo $column_NgC; ?></td>
+                  <td class="text-center" colspan="2"><?php echo $column_ThC; ?></td>
+                  <td class="text-center" colspan="2"><?php echo $column_TgC; ?></td>
+                  <td class="text-center" rowspan="2"><?php echo $column_std_NgC; ?></td>
+                  <td class="text-center" rowspan="2"><?php echo $column_std_GiC; ?></td>
+                  <td class="text-center" colspan="4"><?php echo $column_sTgC; ?></td>
                 </tr>
                 <tr>
                   <?php $i = 0; ?>
@@ -104,6 +110,14 @@
                   <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>>ThC</td>
                   <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>>TgC</td>
                   <?php } ?>
+                  <td class="text-center"><?php echo $column_CP; ?></td>
+                  <td class="text-center"><?php echo $column_KP; ?></td>
+                  <td class="text-center"><?php echo $column_NN; ?></td>
+                  <td class="text-center"><?php echo $column_NT; ?></td>
+                  <td class="text-center"><?php echo $column_NgC_TgC; ?></td>
+                  <td class="text-center"><?php echo $column_ThC_TgC; ?></td>
+                  <td class="text-center" style="min-width: 65px;"><?php echo $column_NT_TgC; ?></td>
+                  <td class="text-center" style="min-width: 65px;"><?php echo $column_NN_TgC; ?></td>
                 </tr>
               </thead>
               <tbody>
@@ -112,15 +126,26 @@
                 <tr>
                   <td class="text-left"><?php echo $staff['code']; ?></td>
                   <td class="text-left"><?php echo $staff['fullname']; ?></td>
-                  <td class="text-left"><?php echo $staff['working']; ?></td>
+                  <td class="text-center"><?php echo $staff['working']; ?></td>
                   <td class="text-left"><?php echo $staff['department']; ?></td>
                   <?php $i = 0; ?>
                   <?php for ($date = $filter_date_start; $date <= $filter_date_end; $date++) { ?>
                   <?php $i++; ?>
-                  <td class="text-left" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['NgC']; ?></td>
-                  <td class="text-left" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['ThC']; ?></td>
-                  <td class="text-left" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['TgC']; ?></td>
+                  <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['NgC']; ?></td>
+                  <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['ThC']; ?></td>
+                  <td class="text-center" <?php if ($i % 2 != 0) { ?>style="background-color: rgb(211, 211, 211);"<?php } ?>><?php echo $staff['timesheets'][$date]['TgC']; ?></td>
                   <?php } ?>
+                  <td class="text-center"><?php echo $staff['NgC']; ?></td>
+                  <td class="text-center"><?php echo $staff['ThC_CP']; ?></td>
+                  <td class="text-center"><?php echo $staff['ThC_KP']; ?></td>
+                  <td class="text-center"><?php echo $staff['TgC_NN']; ?></td>
+                  <td class="text-center"><?php echo $staff['TgC_NT']; ?></td>
+                  <td class="text-center"><?php echo $staff['std_NgC']; ?></td>
+                  <td class="text-center"><?php echo $staff['std_GiC']; ?></td>
+                  <td class="text-center"><?php echo $staff['NgC_TgC']; ?></td>
+                  <td class="text-center"><?php echo $staff['ThC_TgC']; ?></td>
+                  <td class="text-center"><?php echo $staff['NT_TgC']; ?></td>
+                  <td class="text-center"><?php echo $staff['NN_TgC']; ?></td>
                 </tr>
                 <?php } ?>
                 <?php } else { ?>

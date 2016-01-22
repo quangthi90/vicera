@@ -1,6 +1,12 @@
 <?php
 class ControllerStaffTimesheet extends Controller {
 	private $error = array();
+	private $NgC = 0;
+	private $ThC_CP = 0;
+	private $ThC_KP = 0;
+	private $TgC_NN = 0;
+	private $TgC_NT = 0;
+	private $std_NgC = 0;
 
 	public function index() {
 		$this->load->language('staff/timesheet');
@@ -292,6 +298,30 @@ class ControllerStaffTimesheet extends Controller {
 
 		foreach ($results as $result) {
 			$timesheets = $this->calculateTimesheet($result['staff_id'], $filter_date_start, $filter_date_end);
+
+			$std_GiC = $this->std_NgC * $result['working'];
+			$NgC_TgC = $this->NgC;
+			$NT_TgC = 0;
+			$NN_TgC = 0;
+			$ThC_TgC = 0;
+
+			if ($NgC_TgC < $std_GiC) {
+				$NgC_TgC += $this->TgC_NT;
+			}
+
+			if ($NgC_TgC < $std_GiC) {
+				$NgC_TgC += $this->TgC_NN;
+			} else {
+				$NT_TgC = $NgC_TgC - $std_GiC;
+				$NgC_TgC = $std_GiC;
+			}
+
+			if ($NgC_TgC > $std_GiC) {
+				$NN_TgC = $NgC_TgC - $std_GiC;
+				$NgC_TgC = $std_GiC;
+			} else {
+				$ThC_TgC = $std_GiC - $NgC_TgC;
+			}
 			
 			$data['staffs'][] = array(
 				'staff_id'  	=> $result['staff_id'],
@@ -299,7 +329,18 @@ class ControllerStaffTimesheet extends Controller {
 				'fullname'    	=> $result['fullname'],
 				'working' 		=> $result['working'],
 				'department'    => $result['position_name'] . '<br>' . $result['part_name'],
-				'timesheets'	=> $timesheets
+				'timesheets'	=> $timesheets,
+				'NgC'			=> $this->NgC,
+				'ThC_CP'		=> $this->ThC_CP,
+				'ThC_KP'		=> $this->ThC_KP,
+				'TgC_NN'		=> $this->TgC_NN,
+				'TgC_NT'		=> $this->TgC_NT,
+				'std_NgC'		=> $this->std_NgC,
+				'std_GiC'		=> $std_GiC,
+				'NgC_TgC'		=> $NgC_TgC,
+				'ThC_TgC'		=> $ThC_TgC,
+				'NT_TgC'		=> $NT_TgC,
+				'NN_TgC'		=> $NN_TgC,
 			);
 		}
 
@@ -318,6 +359,20 @@ class ControllerStaffTimesheet extends Controller {
 		$data['column_working'] = $this->language->get('column_working');
 		$data['column_department'] = $this->language->get('column_department');
 		$data['column_part'] = $this->language->get('column_part');
+		$data['column_NgC'] = $this->language->get('column_NgC');
+		$data['column_ThC'] = $this->language->get('column_ThC');
+		$data['column_CP'] = $this->language->get('column_CP');
+		$data['column_KP'] = $this->language->get('column_KP');
+		$data['column_TgC'] = $this->language->get('column_TgC');
+		$data['column_NN'] = $this->language->get('column_NN');
+		$data['column_NT'] = $this->language->get('column_NT');
+		$data['column_std_NgC'] = $this->language->get('column_std_NgC');
+		$data['column_std_GiC'] = $this->language->get('column_std_GiC');
+		$data['column_sTgC'] = $this->language->get('column_sTgC');
+		$data['column_NgC_TgC'] = $this->language->get('column_NgC_TgC');
+		$data['column_ThC_TgC'] = $this->language->get('column_ThC_TgC');
+		$data['column_NT_TgC'] = $this->language->get('column_NT_TgC');
+		$data['column_NN_TgC'] = $this->language->get('column_NN_TgC');
 
 		$data['entry_date_start'] = $this->language->get('entry_date_start');
 		$data['entry_date_end'] = $this->language->get('entry_date_end');
@@ -662,6 +717,13 @@ class ControllerStaffTimesheet extends Controller {
 				$working_offsets[$result['date']] = array();
 			$working_offsets[$result['date']][] = $result;
 		}
+
+		$this->NgC = 0;
+		$this->ThC_CP = 0;
+		$this->ThC_KP = 0;
+		$this->TgC_NN = 0;
+		$this->TgC_NT = 0;
+		$this->std_NgC = 0;
 		
 		// create timesheet
 		$return = array();
@@ -721,7 +783,7 @@ class ControllerStaffTimesheet extends Controller {
 			} else {
 				$resutls = $workings[$date];
 				foreach ($resutls as $resutl) {
-					if ($resutl['error']) {
+					if ($NgC !== 'NB' && $resutl['error']) {
 						$NgC = 'Lỗi';
 						break;
 					}
@@ -732,6 +794,13 @@ class ControllerStaffTimesheet extends Controller {
 					}
 				}
 			}
+
+			$this->NgC += $NgC === 'NB' || $NgC < 0 || $NgC === 'Lỗi' ? 0 : $NgC;
+			$this->ThC_CP += $ThC_CP;
+			$this->ThC_KP += $ThC_KP;
+			$this->TgC_NN += $TgC_NN;
+			$this->TgC_NT += $TgC_NT;
+			if ($NgC !== 'NB') $this->std_NgC++;
 
 			$return[$date] = array(
 				'NgC' => $NgC < 0 ? 0 : $NgC,
